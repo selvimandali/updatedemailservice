@@ -1,0 +1,15 @@
+apiVersion: v1  
+kind: Service  
+metadata:  
+  name: qbthon-email-service  
+  labels:  
+    app: qbthon-email-service  
+spec:  
+  selector:  
+    app: email-service  
+  ports:  
+    - port: 80  
+      protocol: TCP
+      targetPort: 8070
+      name: http  
+  #type: NodePort

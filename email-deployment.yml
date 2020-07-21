@@ -1,0 +1,30 @@
+apiVersion: apps/v1  
+kind: Deployment  
+metadata:  
+  name: email-service-deployment  
+  labels:  
+    apps: email-service-deployment  
+spec:  
+  replicas: 1  
+  minReadySeconds: 15  
+  strategy:  
+    type: Recreate  
+  selector:  
+    matchLabels:  
+      app: email-service  
+  template:  
+    metadata:  
+      labels:  
+        app: email-service  
+    spec:  
+      containers:  
+         - name: email-service  
+           image: 895164885144.dkr.ecr.eu-west-1.amazonaws.com/qbthonspartanemail:TAG_ID
+           imagePullPolicy: IfNotPresent  
+           ports:  
+             - containerPort: 8070
+           env:
+             - name: SPRING_CLOUD_CONFIG_URI  
+               value: "http://${QBTHON_CONFIG_SERVER_SERVICE_HOST}:${QBTHON_CONFIG_SERVER_SERVICE_PORT}/config"  
+             - name: SPRING_CLOUD_CONFIG_PROFILE  
+               value: "prod"
