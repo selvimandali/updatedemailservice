@@ -1,0 +1,41 @@
+server:
+  port: 8070
+  servlet: 
+    contextPath: /email
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "selvimandali2096@gmail.com" #please add your credentials here
+    password: "tnocapqokicyevva" #please add your credentials here
+    properties:
+      mail:
+        auth: true
+        starttls:
+          enables: true
+          required: true
+  data:
+    dynamodb:
+      entity2ddl:
+        auto: create-only
+        gsiProjectionType: ALL
+        readCapacity: 10
+        writeCapacity: 1
+amazon:  
+  access:
+    key: fakeAccessKeyId
+    secret-key: fakeSecretAccessKey
+  end-point: 
+    url: http://localhost:8000/
+core:
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin, Va
+timer:
+  startEventMail:  0 0 10,14 * * MON-FRI
+  feedBackMail:  0 0 15,17 * * MON-FRI
+url:
+  dashBoard: "http://localhost:4200/home"
+hour:
+  startMorning: "10"
+  startNoon: "14"
+  endMorning: "15"
+  endNoon: "17"
